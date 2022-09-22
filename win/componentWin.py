@@ -79,4 +79,3 @@ class ComponentWin:
         self.ui.hide()
 
 
-

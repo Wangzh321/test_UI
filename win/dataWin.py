@@ -1,7 +1,8 @@
+#数据监视窗口
 from PySide2.QtUiTools import QUiLoader
 
-#属性编辑窗口
-class EditWin:
+
+class DataWin:
     '''
     属性编辑窗口
     '''
@@ -11,7 +12,7 @@ class EditWin:
         # 从 UI 定义中动态 创建一个相应的窗口对象
         # 注意：里面的控件对象也成为窗口对象的属性了
         # 比如 self.ui.button , self.ui.textEdit
-        self.ui = QUiLoader().load('./static/UI/edit.ui')
+        self.ui = QUiLoader().load('./static/UI/data.ui')
         #默认组件界面关闭
         self.ui.hide()
         #绑定重置文本按钮
@@ -25,11 +26,8 @@ class EditWin:
         :return:
         '''
         self.ui.lineEdit.setText("重置文本成功")
+        self.ui.lineEdit_2.setText("重置文本成功")
         self.ui.lineEdit_3.setText("重置文本成功")
-        self.ui.lineEdit_4.setText("重置文本成功")
-        self.ui.lineEdit_9.setText("重置文本成功")
-        self.ui.lineEdit_10.setText("重置文本成功")
-        self.ui.lineEdit_8.setText("重置文本成功")
 
     def confirm(self):
         '''

@@ -1,12 +1,18 @@
+from PySide2 import QtCore
+from PySide2.QtCore import QSize
+from PySide2.QtGui import QIcon, Qt
 from PySide2.QtUiTools import QUiLoader
+from PySide2.QtWidgets import QMainWindow, QWidget, QMessageBox
 
 from lib.baseDragButton import DraggableButton
 from lib.share import Share
 
+
 #主窗口
-class MainWin:
+class MainWin(QMainWindow):
 
     def __init__(self):
+        super(MainWin, self).__init__()
         # 从文件中加载UI定义
 
         # 从 UI 定义中动态 创建一个相应的窗口对象
@@ -28,16 +34,27 @@ class MainWin:
         self.hideAllComponents()
         self.creatcomponents()
 
+        #self.close()
+
         # self.ui.pushButton_8.move(30, 20)
 
-    def mouseMoveEvent(self, e):
-        print('main', e.x(), e.y())
+    def closeEvent(self, event):
+        reply = QMessageBox.question(self, '警告', "系统将退出，是否确认?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            event.accept()
+        else:
+            event.ignore()
+
+
+    def keyPressEvent(self, event):
+        print("close")
 
     def openComponentWin(self):
        '''
        展示组件选择界面
        :return:
        '''
+       Share.componentWin.ui.setWindowModality(QtCore.Qt.ApplicationModal)
        Share.componentWin.ui.show()
 
     def hideAllComponents(self):
@@ -59,15 +76,15 @@ class MainWin:
         self.ui.pushButton_14.hide()
     def creatcomponents(self):
         # 组件类型1
-        self.ui.pushButton_8 = DraggableButton("组件1", self.ui)
-        self.ui.pushButton_13 = DraggableButton("组件1", self.ui)
-        self.ui.pushButton_11 = DraggableButton("组件1", self.ui)
-        self.ui.pushButton_9 = DraggableButton("组件1", self.ui)
-        self.ui.pushButton_10 = DraggableButton("组件1", self.ui)
-        # 组件类型2
-        self.ui.pushButton_5 = DraggableButton("组件2", self.ui)
-        self.ui.pushButton_6 = DraggableButton("组件2", self.ui)
-        self.ui.pushButton_7 = DraggableButton("组件2", self.ui)
-        self.ui.pushButton_12 = DraggableButton("组件2", self.ui)
-        self.ui.pushButton_14 = DraggableButton("组件2", self.ui)
+        self.ui.pushButton_8 = DraggableButton(QIcon("./static/images/cpu.png"),"1", self.ui)
+        self.ui.pushButton_13 = DraggableButton(QIcon("./static/images/cpu.png"),"2", self.ui)
+        # self.ui.pushButton_11 = DraggableButton("./static/images/cpu.png","组件1", self.ui)
+        # self.ui.pushButton_9 = DraggableButton("./static/images/cpu.png","组件1", self.ui)
+        # self.ui.pushButton_10 = DraggableButton("./static/images/cpu.png","组件1", self.ui)
+        # # 组件类型2
+        # self.ui.pushButton_5 = DraggableButton("./static/images/cpu.png","组件2", self.ui)
+        # self.ui.pushButton_6 = DraggableButton("./static/images/cpu.png","组件2", self.ui)
+        # self.ui.pushButton_7 = DraggableButton("./static/images/cpu.png","组件2", self.ui)
+        # self.ui.pushButton_12 = DraggableButton("./static/images/cpu.png","组件2", self.ui)
+        # self.ui.pushButton_14 = DraggableButton("./static/images/cpu.png","组件2", self.ui)
 
