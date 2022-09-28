@@ -10,7 +10,7 @@ from win.mainWin import MainWin
 if __name__ == '__main__':
     app = QApplication([])
     Share.mainWin = MainWin()
-    Share.mainWin.ui.show()
+    Share.mainWin.show()
     compomentWin = ComponentWin()
 
     Share.componentWin = compomentWin
