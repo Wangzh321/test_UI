@@ -33,15 +33,15 @@ class ComponentWin:
         # 显示组件
 
         if (Share.componentCount1 == 0):
-            Share.mainWin.ui.pushButton_8.show()
+            Share.mainWin.pushButton_8.show()
         elif (Share.componentCount1 == 1):
-            Share.mainWin.ui.pushButton_13.show()
+            Share.mainWin.pushButton_13.show()
         elif (Share.componentCount1 == 2):
-            Share.mainWin.ui.pushButton_11.show()
+            Share.mainWin.pushButton_11.show()
         elif (Share.componentCount1 == 3):
-            Share.mainWin.ui.pushButton_9.show()
+            Share.mainWin.pushButton_9.show()
         elif (Share.componentCount1 == 4):
-            Share.mainWin.ui.pushButton_10.show()
+            Share.mainWin.pushButton_10.show()
         # 限制每类组件5个
         else:
             QMessageBox.information(
@@ -59,15 +59,15 @@ class ComponentWin:
         '''
         # 显示组件
         if (Share.componentCount2 == 0):
-            Share.mainWin.ui.pushButton_5.show()
+            Share.mainWin.pushButton_5.show()
         elif (Share.componentCount2 == 1):
-            Share.mainWin.ui.pushButton_6.show()
+            Share.mainWin.pushButton_6.show()
         elif (Share.componentCount2 == 2):
-            Share.mainWin.ui.pushButton_7.show()
+            Share.mainWin.pushButton_7.show()
         elif (Share.componentCount2 == 3):
-            Share.mainWin.ui.pushButton_12.show()
+            Share.mainWin.pushButton_12.show()
         elif (Share.componentCount2 == 4):
-            Share.mainWin.ui.pushButton_14.show()
+            Share.mainWin.pushButton_14.show()
         # 限制每类组件5个
         else:
             QMessageBox.information(

@@ -6,18 +6,20 @@ from PySide2.QtCore import QPoint, QSize
 from PySide2.QtGui import QIcon
 from PySide2.QtWidgets import QPushButton
 from lib.share import Share
+from utils.operateJson import loadJsonFromFile
 
 
 class DraggableButton(QPushButton):
-    def __init__(self, icon,title, parent):
+    def __init__(self, icon,title, parent,name):
         super().__init__(icon,title, parent)
 
         self.setIconSize(QSize(100, 100))
 
         self.iniDragCor = [30, 20]
-        # 初始位置和大小
+        # 初始位置和大小、名字
         self.move(150, 70)
         self.resize(80, 80)
+        self.setObjectName(name)
         # 绑定点击事件
         # self.clicked.connect(self.openEditWin)
 
@@ -51,6 +53,11 @@ class DraggableButton(QPushButton):
         打开属性编辑窗口
         :return:
         '''
+        Share.editWin.ClearLastFill()
+        Share.editWin.setButtonName(self.objectName())
+        configInfo = loadJsonFromFile("test.json").get(self.objectName())
+        if configInfo is not None:
+            Share.editWin.loadCofig(configInfo)
         Share.editWin.ui.setWindowModality(QtCore.Qt.ApplicationModal)
         Share.editWin.ui.show()
 
