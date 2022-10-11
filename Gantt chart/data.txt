@@ -1,0 +1,13 @@
+
+
+
+execute time1:20
+execute time2:25
+speed_1to2:40
+
+
+
+
+后续多核
+多pe
+ui显示
