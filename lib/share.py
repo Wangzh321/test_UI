@@ -6,4 +6,5 @@ class Share:
     num=0          #新整按钮属性
     componentCount1=0 #组件1计数
     componentCount2=0 #组件2计数
+    componentCount3=0 #组件3计算
     configJson={}

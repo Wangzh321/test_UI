@@ -1,6 +1,9 @@
+from PySide2.QtCore import QRect
+from PySide2.QtGui import QIcon
 from PySide2.QtUiTools import QUiLoader
-from PySide2.QtWidgets import QMessageBox
+from PySide2.QtWidgets import QMessageBox, QPushButton
 
+from lib.baseDragButton import DraggableButton
 from lib.share import Share
 
 
@@ -18,64 +21,30 @@ class ComponentWin:
         self.ui.hide()
 
         # 选择组件
-        self.ui.pushButton.clicked.connect(self.selectComponent1)
-        self.ui.pushButton_2.clicked.connect(self.selectComponent2)
-        # self.ui.pushButton_3.clicked.connect(self.selectComponent)
+        self.ui.pushButton.clicked.connect(lambda :self.selectComponent(1))
+        self.ui.pushButton_2.clicked.connect(lambda :self.selectComponent(2))
+        self.ui.pushButton_3.clicked.connect(lambda :self.selectComponent(3))
         # self.ui.pushButton_8.clicked.connect(self.selectComponent)
         # self.ui.pushButton_7.clicked.connect(self.selectComponent)
 
-    def selectComponent1(self):
+    def selectComponent(self,clickButtonOrder):
         '''
         选择组件1
         :return:
         '''
 
         # 显示组件
+        if(clickButtonOrder==1):
+            Share.componentCount1 += 1
+            button= DraggableButton(QIcon("./static/images/cpu.png"),"组件1-%d"%(Share.componentCount1), Share.mainWin.frame_2,1)
+        elif(clickButtonOrder==2):
+            Share.componentCount2+=1
+            button = DraggableButton(QIcon("./static/images/road.png"), "组件2-%d" % (Share.componentCount2),Share.mainWin.frame_2, 2)
+        elif(clickButtonOrder==3):
+            Share.componentCount3+=1
+            button = DraggableButton(QIcon("./static/images/road1.png"), "组件3-%d" % (Share.componentCount3),Share.mainWin.frame_2, 3)
 
-        if (Share.componentCount1 == 0):
-            Share.mainWin.pushButton_8.show()
-        elif (Share.componentCount1 == 1):
-            Share.mainWin.pushButton_13.show()
-        elif (Share.componentCount1 == 2):
-            Share.mainWin.pushButton_11.show()
-        elif (Share.componentCount1 == 3):
-            Share.mainWin.pushButton_9.show()
-        elif (Share.componentCount1 == 4):
-            Share.mainWin.pushButton_10.show()
-        # 限制每类组件5个
-        else:
-            QMessageBox.information(
-                self.ui,
-                '提示',
-                '每类组件最多5个！')
-        Share.componentCount1 += 1
-        # 关闭组件选择窗口
-        self.ui.hide()
-
-    def selectComponent2(self):
-        '''
-        选择组件2
-        :return:
-        '''
-        # 显示组件
-        if (Share.componentCount2 == 0):
-            Share.mainWin.pushButton_5.show()
-        elif (Share.componentCount2 == 1):
-            Share.mainWin.pushButton_6.show()
-        elif (Share.componentCount2 == 2):
-            Share.mainWin.pushButton_7.show()
-        elif (Share.componentCount2 == 3):
-            Share.mainWin.pushButton_12.show()
-        elif (Share.componentCount2 == 4):
-            Share.mainWin.pushButton_14.show()
-        # 限制每类组件5个
-        else:
-            QMessageBox.information(
-                self.ui,
-                '提示',
-                '每类组件最多5个！')
-        Share.componentCount2 += 1
-        # 关闭组件选择窗口
+        button.show()
         self.ui.hide()
 
 
