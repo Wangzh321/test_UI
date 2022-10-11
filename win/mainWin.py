@@ -2,8 +2,6 @@ from PySide2 import QtCore
 from PySide2.QtCore import QSize, QCoreApplication, QMetaObject, QRect
 from PySide2.QtGui import QIcon, Qt, QFont
 from PySide2.QtWidgets import *
-
-from lib.baseDragButton import DraggableButton
 from lib.share import Share
 
 
@@ -24,27 +22,23 @@ class MainWin(QMainWindow):
         self.stackedWidget.setCurrentIndex(4)
     #
     #     # 切换界面
-        self.pushButton.clicked.connect(lambda :self.stackedWidget.setCurrentIndex(0) or self.hideAllComponents())
-        self.pushButton_2.clicked.connect(lambda :self.stackedWidget.setCurrentIndex(1) or self.hideAllComponents())
-        self.pushButton_3.clicked.connect(lambda :self.stackedWidget.setCurrentIndex(2) or self.hideAllComponents())
+        self.pushButton.clicked.connect(lambda :self.stackedWidget.setCurrentIndex(0))
+        self.pushButton_2.clicked.connect(lambda :self.stackedWidget.setCurrentIndex(1))
+        self.pushButton_3.clicked.connect(lambda :self.stackedWidget.setCurrentIndex(2))
 
         #总线事件绑定
         self.pushButton_4.setStyleSheet("QPushButton{border-image: url('./static/images/a.png')}")  # 设置背景图片，设置后一直存在
         self.pushButton_4.clicked.connect(self.openComponentWin)
-        #创建可移动按钮
-        self.hideAllComponents()
-        self.creatcomponents()
 
-        #self.close()
 
-        # self.pushButton_8.move(30, 20)
 
     def setupUi(self):
             if not self.objectName():
                 self.setObjectName(u"self")
+
+            #窗口及菜单栏
             self.resize(1078, 785)
-            self.setMinimumSize(QSize(0, 0))
-            self.setMaximumSize(QSize(1078, 785))
+            self.setMinimumSize(QSize(1078, 785))
             icon = QIcon()
             icon.addFile(u"../../../db/.designer/backup/static/images/s.png", QSize(), QIcon.Normal, QIcon.Off)
             self.setWindowIcon(icon)
@@ -89,6 +83,8 @@ class MainWin(QMainWindow):
             icon8 = QIcon()
             icon8.addFile(u"static/images/\u56de\u9000.png", QSize(), QIcon.Normal, QIcon.Off)
             self.action8.setIcon(icon8)
+
+            #中间窗口 参考https://doc.qt.io/qtforpython/_images/mainwindowlayout.png
             self.centralwidget = QWidget(self)
             self.centralwidget.setObjectName(u"centralwidget")
             self.verticalLayout_2 = QVBoxLayout(self.centralwidget)
@@ -97,6 +93,8 @@ class MainWin(QMainWindow):
             self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
             self.verticalLayout = QVBoxLayout()
             self.verticalLayout.setObjectName(u"verticalLayout")
+
+            #platform按钮，名字通过self.retranslateUi(self)293行设置
             self.pushButton = QPushButton(self.centralwidget)
             self.pushButton.setObjectName(u"pushButton")
             font = QFont()
@@ -108,7 +106,7 @@ class MainWin(QMainWindow):
                                           "}*/")
 
             self.verticalLayout.addWidget(self.pushButton)
-
+            #同上
             self.pushButton_2 = QPushButton(self.centralwidget)
             self.pushButton_2.setObjectName(u"pushButton_2")
             self.pushButton_2.setFont(font)
@@ -118,7 +116,7 @@ class MainWin(QMainWindow):
                                             "}*/")
 
             self.verticalLayout.addWidget(self.pushButton_2)
-
+            #同上
             self.pushButton_3 = QPushButton(self.centralwidget)
             self.pushButton_3.setObjectName(u"pushButton_3")
             self.pushButton_3.setFont(font)
@@ -129,6 +127,7 @@ class MainWin(QMainWindow):
 
             self.verticalLayout.addWidget(self.pushButton_3)
 
+            #弹簧
             self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
             self.verticalLayout.addItem(self.verticalSpacer)
@@ -144,58 +143,29 @@ class MainWin(QMainWindow):
 
             self.stackedWidget = QStackedWidget(self.centralwidget)
             self.stackedWidget.setObjectName(u"stackedWidget")
+
+            #platform对应的页
             self.page = QWidget()
             self.page.setObjectName(u"page")
             self.horizontalLayout = QHBoxLayout(self.page)
             self.horizontalLayout.setObjectName(u"horizontalLayout")
+
             self.frame_2 = QFrame(self.page)
             self.frame_2.setObjectName(u"frame_2")
             self.frame_2.setMaximumSize(QSize(16777212, 16777215))
             self.frame_2.setStyleSheet(u"#frame_2{background-color:rgb(255, 255, 255);}")
             self.frame_2.setFrameShape(QFrame.StyledPanel)
             self.frame_2.setFrameShadow(QFrame.Raised)
+
+            #总线
             self.pushButton_4 = QPushButton(self.frame_2)
             self.pushButton_4.setObjectName(u"pushButton_4")
             self.pushButton_4.setGeometry(QRect(300, 110, 91, 301))
-            self.pushButton_8 = QPushButton(self.frame_2)
-            self.pushButton_8.setObjectName(u"pushButton_8")
-            self.pushButton_8.setGeometry(QRect(180, 60, 61, 41))
-            icon9 = QIcon()
-            icon9.addFile(u"static/images/\u7eff\u6d32_cpu.png", QSize(), QIcon.Normal, QIcon.Off)
-            icon9.addFile(u"static/images/\u7eff\u6d32_cpu.png", QSize(), QIcon.Normal, QIcon.On)
-            icon9.addFile(u"static/images/\u7eff\u6d32_cpu.png", QSize(), QIcon.Disabled, QIcon.Off)
-            self.pushButton_8.setIcon(icon9)
-            self.pushButton_9 = QPushButton(self.frame_2)
-            self.pushButton_9.setObjectName(u"pushButton_9")
-            self.pushButton_9.setGeometry(QRect(10, 120, 61, 21))
-            self.pushButton_10 = QPushButton(self.frame_2)
-            self.pushButton_10.setObjectName(u"pushButton_10")
-            self.pushButton_10.setGeometry(QRect(50, 90, 51, 21))
-            self.pushButton_11 = QPushButton(self.frame_2)
-            self.pushButton_11.setObjectName(u"pushButton_11")
-            self.pushButton_11.setGeometry(QRect(90, 30, 61, 21))
-            self.pushButton_13 = QPushButton(self.frame_2)
-            self.pushButton_13.setObjectName(u"pushButton_13")
-            self.pushButton_13.setGeometry(QRect(10, 50, 61, 21))
-            self.pushButton_5 = QPushButton(self.frame_2)
-            self.pushButton_5.setObjectName(u"pushButton_5")
-            self.pushButton_5.setGeometry(QRect(60, 180, 93, 28))
-            self.pushButton_6 = QPushButton(self.frame_2)
-            self.pushButton_6.setObjectName(u"pushButton_6")
-            self.pushButton_6.setGeometry(QRect(40, 220, 93, 28))
-            self.pushButton_7 = QPushButton(self.frame_2)
-            self.pushButton_7.setObjectName(u"pushButton_7")
-            self.pushButton_7.setGeometry(QRect(30, 260, 93, 28))
-            self.pushButton_12 = QPushButton(self.frame_2)
-            self.pushButton_12.setObjectName(u"pushButton_12")
-            self.pushButton_12.setGeometry(QRect(40, 300, 93, 28))
-            self.pushButton_14 = QPushButton(self.frame_2)
-            self.pushButton_14.setObjectName(u"pushButton_14")
-            self.pushButton_14.setGeometry(QRect(50, 340, 93, 28))
 
             self.horizontalLayout.addWidget(self.frame_2)
-
             self.stackedWidget.addWidget(self.page)
+
+            #第二页
             self.page_2 = QWidget()
             self.page_2.setObjectName(u"page_2")
             self.frame_3 = QFrame(self.page_2)
@@ -224,6 +194,7 @@ class MainWin(QMainWindow):
             self.horizontalLayout_2.addWidget(self.stackedWidget)
 
             self.verticalLayout_2.addLayout(self.horizontalLayout_2)
+
 
             self.setCentralWidget(self.centralwidget)
             self.menubar = QMenuBar(self)
@@ -291,16 +262,6 @@ class MainWin(QMainWindow):
             self.pushButton_2.setText(QCoreApplication.translate("smartUI", u"PushButton", None))
             self.pushButton_3.setText(QCoreApplication.translate("smartUI", u"PushButton", None))
             self.pushButton_4.setText(QCoreApplication.translate("smartUI", u"\u603b\u7ebf", None))
-            self.pushButton_8.setText(QCoreApplication.translate("smartUI", u"\u7ec4\u4ef61", None))
-            self.pushButton_9.setText(QCoreApplication.translate("smartUI", u"\u7ec4\u4ef61", None))
-            self.pushButton_10.setText(QCoreApplication.translate("smartUI", u"\u7ec4\u4ef61", None))
-            self.pushButton_11.setText(QCoreApplication.translate("smartUI", u"\u7ec4\u4ef61", None))
-            self.pushButton_13.setText(QCoreApplication.translate("smartUI", u"\u7ec4\u4ef61", None))
-            self.pushButton_5.setText(QCoreApplication.translate("smartUI", u"PushButton", None))
-            self.pushButton_6.setText(QCoreApplication.translate("smartUI", u"PushButton", None))
-            self.pushButton_7.setText(QCoreApplication.translate("smartUI", u"PushButton", None))
-            self.pushButton_12.setText(QCoreApplication.translate("smartUI", u"PushButton", None))
-            self.pushButton_14.setText(QCoreApplication.translate("smartUI", u"PushButton", None))
             self.plainTextEdit.setPlainText(QCoreApplication.translate("smartUI", u"\u9875\u97622\n"
                                                                                   "", None))
             self.lineEdit_2.setText(QCoreApplication.translate("smartUI", u"\u7a7a\u767d\u9875\u6d4b\u8bd5", None))
@@ -323,39 +284,13 @@ class MainWin(QMainWindow):
        Share.componentWin.ui.show()
 
 
-    def hideAllComponents(self):
-        '''
-        隐藏所有动态创建的组件
-        :return:
-        '''
-        # 组件类型1
-        self.pushButton_8.hide()
-        self.pushButton_13.hide()
-        self.pushButton_11.hide()
-        self.pushButton_9.hide()
-        self.pushButton_10.hide()
-        # 组件类型2
-        self.pushButton_5.hide()
-        self.pushButton_6.hide()
-        self.pushButton_7.hide()
-        self.pushButton_12.hide()
-        self.pushButton_14.hide()
-    def creatcomponents(self):
-        # 组件类型1
-        self.pushButton_8 = DraggableButton(QIcon("./static/images/cpu.png"),"1", self,'组件1')
-        self.pushButton_13 = DraggableButton(QIcon("./static/images/cpu.png"),"2", self,'组件2')
-        # self.pushButton_11 = DraggableButton("./static/images/cpu.png","组件1", self)
-        # self.pushButton_9 = DraggableButton("./static/images/cpu.png","组件1", self)
-        # self.pushButton_10 = DraggableButton("./static/images/cpu.png","组件1", self)
-        # # 组件类型2
-        # self.pushButton_5 = DraggableButton("./static/images/cpu.png","组件2", self)
-        # self.pushButton_6 = DraggableButton("./static/images/cpu.png","组件2", self)
-        # self.pushButton_7 = DraggableButton("./static/images/cpu.png","组件2", self)
-        # self.pushButton_12 = DraggableButton("./static/images/cpu.png","组件2", self)
-        # self.pushButton_14 = DraggableButton("./static/images/cpu.png","组件2", self)
-    def closeEvent(self, event):
-        reply = QMessageBox.question(self, '警告', "系统将退出，是否确认?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-        if reply == QMessageBox.Yes:
-            event.accept()
-        else:
-            event.ignore()
+
+
+
+
+    # def closeEvent(self, event):
+    #     reply = QMessageBox.question(self, '警告', "系统将退出，是否确认?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+    #     if reply == QMessageBox.Yes:
+    #         event.accept()
+    #     else:
+    #         event.ignore()
