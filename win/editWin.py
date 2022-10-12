@@ -10,7 +10,8 @@ class EditWin:
     属性编辑窗口
     '''
     def __init__(self):
-        self.buttonName=''
+        self. componentName=''
+        self. componenttype=''
         # 从文件中加载UI定义
 
         # 从 UI 定义中动态 创建一个相应的窗口对象
@@ -42,7 +43,9 @@ class EditWin:
         :return:
         '''
         componentConfigJson={
-        self.buttonName: {
+        self.componentName:{
+        "componentType":self. componenttype,
+        "componentAttribute":{
         "属性1":self.ui.lineEdit.text(),
         "属性2":self.ui.lineEdit_3.text(),
         "属性3": self.ui.lineEdit_4.text(),
@@ -50,21 +53,28 @@ class EditWin:
         "属性5": self.ui.lineEdit_10.text(),
         "属性6": self.ui.lineEdit_8.text(),
          }
-         }
-        Share.configJson.update(componentConfigJson)
-        saveFileByJson(Share.configJson,"test.json")
+         }}
+        print(Share.jsonFlie)
+        if  Share.jsonFlie.get("component") is None:
+            Share.jsonFlie[("component")]=componentConfigJson
+            print(Share.jsonFlie)
+        else:
+            Share.jsonFlie.get("component").update(componentConfigJson)
+            print(Share.jsonFlie)
+        saveFileByJson(Share.jsonFlie,"./configuration/test.json")
         self.ui.hide()
 
     def loadCofig(self,configInfo):
-        self.ui.lineEdit.setText(configInfo.get("属性1"))
-        self.ui.lineEdit_3.setText(configInfo.get("属性2"))
-        self.ui.lineEdit_4.setText(configInfo.get("属性3"))
-        self.ui.lineEdit_9.setText(configInfo.get("属性4"))
-        self.ui.lineEdit_10.setText(configInfo.get("属性5"))
-        self.ui.lineEdit_8.setText(configInfo.get("属性6"))
+        self.ui.lineEdit.setText(configInfo.get("componentAttribute").get("属性1"))
+        self.ui.lineEdit_3.setText(configInfo.get("componentAttribute").get("属性2"))
+        self.ui.lineEdit_4.setText(configInfo.get("componentAttribute").get("属性3"))
+        self.ui.lineEdit_9.setText(configInfo.get("componentAttribute").get("属性4"))
+        self.ui.lineEdit_10.setText(configInfo.get("componentAttribute").get("属性5"))
+        self.ui.lineEdit_8.setText(configInfo.get("componentAttribute").get("属性6"))
 
-    def setButtonName(self,name):
-        self.buttonName=name
+    def getComponentInfo(self,name,type):
+        self.componentName=name
+        self.componenttype=type
 
     def ClearLastFill(self):
         self.ui.lineEdit.clear()

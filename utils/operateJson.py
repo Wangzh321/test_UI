@@ -8,5 +8,7 @@ def saveFileByJson(Json,fileName):
 
 def loadJsonFromFile(fileName):
     with open(fileName, 'r', encoding='utf-8') as json_file:
+        if json_file is None:
+            return
         data = json.load(json_file)
         return data
