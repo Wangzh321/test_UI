@@ -22,6 +22,7 @@ class DraggableButton(QPushButton):
         self.resize(120, 120)
         self.setObjectName(title)
         self.type=type
+        self.setStyleSheet("border-style: dashed;border-width: 2px;border-color: #8B7355;")
         # 绑定点击事件
         # self.clicked.connect(self.openEditWin)
 
@@ -34,7 +35,6 @@ class DraggableButton(QPushButton):
             self.initDragLocation(e)
             # 右键按下
         elif e.buttons() == QtCore.Qt.RightButton:
-            self.deleteComponents(e)
             self.openDataWin()
 
 
@@ -73,10 +73,7 @@ class DraggableButton(QPushButton):
         Share.jsonFlie = loadJsonFromFile("./configuration/test.json")
         print( Share.jsonFlie)
         if  Share.jsonFlie and  Share.jsonFlie.get("component") and  Share.jsonFlie.get("component").get(self.objectName()):
-            print("组件属性存在",Share.jsonFlie.get("component").get(self.objectName()))
             Share.editWin.loadCofig(Share.jsonFlie.get("component").get(self.objectName()))
-        else:
-            print("组件属性不存在")
         Share.editWin.ui.setWindowModality(QtCore.Qt.ApplicationModal)
         Share.editWin.ui.show()
 

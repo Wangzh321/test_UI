@@ -1,6 +1,8 @@
 from PySide2.QtUiTools import QUiLoader
 
 #属性编辑窗口
+from PySide2.QtWidgets import QPushButton
+
 from lib.share import Share
 from utils.operateJson import saveFileByJson, loadJsonFromFile
 
@@ -62,6 +64,7 @@ class EditWin:
             Share.jsonFlie.get("component").update(componentConfigJson)
             print(Share.jsonFlie)
         saveFileByJson(Share.jsonFlie,"./configuration/test.json")
+        Share.mainWin.frame_2.findChild(QPushButton,self.componentName).setStyleSheet("border-style: outset;border-width: 2px;border-color: #8B7355;")
         self.ui.hide()
 
     def loadCofig(self,configInfo):
