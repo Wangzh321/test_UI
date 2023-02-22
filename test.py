@@ -1,22 +1,15 @@
 import sys
 
-import PyQt5
-from PyQt5.QtCore import Qt, QRect, QPointF, QRectF, pyqtSignal, QObject
-from PyQt5.QtGui import QBrush, QPainter, QPen, QPolygonF, QColor, QFont
-from PyQt5 import QtGui, QtCore
+from PyQt5.QtCore import Qt, QPointF, QRectF, QObject
+from PyQt5.QtGui import QPainter, QPolygonF, QColor, QFont
 from PyQt5.QtWidgets import (
     QApplication,
-    QGraphicsEllipseItem,
-    QGraphicsItem,
     QGraphicsRectItem,
     QGraphicsPolygonItem,
     QGraphicsTextItem,
     QGraphicsScene,
     QGraphicsView,
     QHBoxLayout,
-    QPushButton,
-    QSlider,
-    QVBoxLayout,
     QWidget,
     QGraphicsSceneHoverEvent,
     QGraphicsSceneMouseEvent
