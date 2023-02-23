@@ -24,6 +24,7 @@ from PyQt5.QtWidgets import (
 
 width = 800
 height = 1000
+print("hello")
 
 
 class Bus(QGraphicsPolygonItem, QObject):
